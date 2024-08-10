@@ -1,0 +1,117 @@
+{
+  "page": 1,
+  "perPage": 20,
+  "totalPosts": 11,
+  "posts": [
+    {
+      "author": "Tunde Alabi",
+      "authorAvatar": "https://pub-38422227c97d42a6b276b4f48668bc37.r2.dev/avatar-m.jpg",
+      "datePublished": "2024-08-06T14:08:10.809921+01:00",
+      "excerpt": "Nigeria's tech industry is buzzing with excitement as the new frontier of creativity and innovation. Lagos, often playfully referred to as the 'Silicon Lagoon,' is at the heart of this dynamic tech ecosystem, attracting innovators and dreamers alike.",
+      "id": 11,
+      "title": "The Rise of Tech Innovation in Nigeria",
+      "userVote": "upvote",
+      "voteCount": 10
+    },
+    {
+      "author": "Ngozi Okafor",
+      "authorAvatar": "https://pub-38422227c97d42a6b276b4f48668bc37.r2.dev/avatar-f.jpg",
+      "datePublished": "2024-08-06T14:08:10.809379+01:00",
+      "excerpt": "Nigeria has made strides in empowering women, but significant challenges remain. Efforts to increase women's participation in politics, education, and entrepreneurship are gaining momentum, driven by grassroots movements and policy changes.",
+      "id": 10,
+      "title": "Empowering Women in Nigeria: Progress and Challenges",
+      "userVote": "upvote",
+      "voteCount": 24
+    },
+    {
+      "author": "Adeola Ogunleye",
+      "authorAvatar": "https://pub-38422227c97d42a6b276b4f48668bc37.r2.dev/avatar-f.jpg",
+      "datePublished": "2024-08-06T14:08:10.808526+01:00",
+      "excerpt": "Nigeria's musical heritage is a vibrant tapestry of traditional rhythms and modern sounds. From the pulsating beats of Afrobeat pioneered by Fela Kuti to the contemporary Afro-pop that has taken the world by storm, Nigerian music is a powerful force.",
+      "id": 9,
+      "title": "Nigeria's Rich Musical Heritage",
+      "userVote": "none",
+      "voteCount": 0
+    },
+    {
+      "author": "Emeka Uche",
+      "authorAvatar": "https://pub-38422227c97d42a6b276b4f48668bc37.r2.dev/avatar-m.jpg",
+      "datePublished": "2024-08-06T14:08:10.807524+01:00",
+      "excerpt": "Social media has become an integral part of life for Nigeria's youth, influencing everything from fashion to politics. Platforms like Twitter, Instagram, and TikTok have given young Nigerians a voice and a platform to express their creativity and opinions.",
+      "id": 8,
+      "title": "The Impact of Social Media on Nigeria's Youth",
+      "userVote": "none",
+      "voteCount": 0
+    },
+    {
+      "author": "Amina Bello",
+      "authorAvatar": "https://pub-38422227c97d42a6b276b4f48668bc37.r2.dev/avatar-f.jpg",
+      "datePublished": "2024-08-06T14:08:10.806003+01:00",
+      "excerpt": "Nigeria's agricultural sector holds immense potential for driving economic growth and ensuring food security. With vast arable land and a favorable climate, Nigeria has the resources to become a leading exporter of agricultural products.",
+      "id": 7,
+      "title": "Nigeria's Agricultural Sector: Unlocking Its Potential",
+      "userVote": "downvote",
+      "voteCount": 18
+    },
+    {
+      "author": "Ngozi Okafor",
+      "authorAvatar": "https://pub-38422227c97d42a6b276b4f48668bc37.r2.dev/avatar-f.jpg",
+      "datePublished": "2024-08-06T14:08:10.799485+01:00",
+      "excerpt": "Nigeria boasts a rich cultural heritage, with over 250 ethnic groups and a diverse array of traditions and customs. From the vibrant festivals of the Yoruba to the intricate beadwork of the Igbo, Nigeria's cultural tapestry is a source of pride and identity.",
+      "id": 6,
+      "title": "Exploring Nigeria's Rich Cultural Heritage",
+      "userVote": "none",
+      "voteCount": 0
+    },
+    {
+      "author": "Chijioke Nwosu",
+      "authorAvatar": "https://pub-38422227c97d42a6b276b4f48668bc37.r2.dev/avatar-m.jpg",
+      "datePublished": "2024-08-06T14:08:10.798801+01:00",
+      "excerpt": "As Nigeria faces challenges with energy supply, the future of renewable energy in the country looks promising. With abundant solar, wind, and hydropower resources, Nigeria has the potential to become a leader in renewable energy on the African continent.",
+      "id": 5,
+      "title": "The Future of Renewable Energy in Nigeria",
+      "userVote": "none",
+      "voteCount": 0
+    },
+    {
+      "author": "Funke Adeyemi",
+      "authorAvatar": "https://pub-38422227c97d42a6b276b4f48668bc37.r2.dev/avatar-f.jpg",
+      "datePublished": "2024-08-06T14:08:10.798116+01:00",
+      "excerpt": "Afrobeats, a genre originating from Nigeria, has taken the global music scene by storm, captivating listeners with its infectious rhythms and vibrant beats. With artists like Burna Boy, Wizkid, and Davido leading the charge, Afrobeats has become a global sensation, topping charts and filling arenas",
+      "id": 4,
+      "title": "Afrobeats: Nigeria's Musical Gift to the World",
+      "userVote": "none",
+      "voteCount": 0
+    },
+    {
+      "author": "Tunde Olanrewaju",
+      "authorAvatar": "https://pub-38422227c97d42a6b276b4f48668bc37.r2.dev/avatar-m.jpg",
+      "datePublished": "2024-08-05T22:08:10.797209+01:00",
+      "excerpt": "Nigeria's tech industry has experienced rapid growth over the past decade, earning the nickname 'Africa's Silicon Valley.' With a burgeoning population of tech-savvy youth and a growing number of startups, Nigeria has become a hub for innovation and entrepreneurship.",
+      "id": 3,
+      "title": "Nigeria's Tech Industry: The Next Silicon Valley?",
+      "userVote": "none",
+      "voteCount": 0
+    },
+    {
+      "author": "Adebola Johnson",
+      "authorAvatar": "https://pub-38422227c97d42a6b276b4f48668bc37.r2.dev/avatar-m.jpg",
+      "datePublished": "2024-08-05T18:08:10.796379+01:00",
+      "excerpt": "The jollof rice wars between Nigeria and Ghana have been ongoing for decades, with each country claiming to have the superior recipe. While both versions are delicious, the Nigerian jollof rice is known for its smoky flavor and rich tomato base, often cooked with an assortment of meats and vegetable",
+      "id": 2,
+      "title": "Jollof Rice Wars: Nigeria vs. Ghana",
+      "userVote": "downvote",
+      "voteCount": -1
+    },
+    {
+      "author": "Chioma Eze",
+      "authorAvatar": "https://pub-38422227c97d42a6b276b4f48668bc37.r2.dev/avatar-f.jpg",
+      "datePublished": "2024-08-04T14:08:10.793295+01:00",
+      "excerpt": "Nollywood, Nigeria's booming film industry, has become the second-largest in the world by volume. With over 2,500 films produced annually, it has made a significant impact on the global cinema landscape. The industry's success is largely attributed to its unique storytelling style and entrepreneuria",
+      "id": 1,
+      "title": "The Rise of Nollywood: Nigeria's Film Industry Revolution",
+      "userVote": "none",
+      "voteCount": 0
+    }
+  ]
+}
