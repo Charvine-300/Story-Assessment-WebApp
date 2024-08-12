@@ -40,7 +40,7 @@ const Post = ({ post }: { post: PostListItem }) => {
       await dispatch(voteOnPost({ postId: post.id, voteType })).unwrap();
 
       // Update vote count based on voteType
-      setVoteCount(prevCount => voteType === "upvote" ? prevCount + 1 : prevCount - 1);
+      setVoteCount(prevCount => voteType === "upvote" ? prevCount + 1 : prevCount - 2);
     } catch (error) {
       setIsLoading(false);
       console.error('Vote failed:', error);
