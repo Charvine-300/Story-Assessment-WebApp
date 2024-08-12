@@ -8,18 +8,18 @@ export interface  User {
 
 // Content types for posts
 export interface  TextContent {
-    type: 'text';
+    type: "text";
     content: string;
 }
 
 export interface  ImageContent {
-    type: 'image';
+    type: "image";
     url: string;
     caption: string;
 }
 
 // Post type representing a detailed post object
-export interface  Post {
+export interface Post {
     id: number;
     title: string;
     content: (TextContent | ImageContent)[];
@@ -27,7 +27,7 @@ export interface  Post {
     authorAvatar: string;
     datePublished: string; // ISO date-time format
     voteCount: number;
-    userVote: 'upvote' | 'downvote' | 'none';
+    userVote: "upvote" | "downvote" | "none";
 }
 
 // PostListItem type for a summarized post in a list
@@ -39,7 +39,7 @@ export interface  PostListItem {
     authorAvatar: string;
     datePublished: string; // ISO date-time format
     voteCount: number;
-    userVote: 'upvote' | 'downvote' | 'none';
+    userVote: "upvote" | "downvote" | "none";
 }
 
 // PostList type representing a paginated list of posts
@@ -74,7 +74,7 @@ export interface  CommentInput {
 
 // VoteInput type for voting on a post
 export interface  VoteInput {
-    voteType: 'upvote' | 'downvote' | 'none';
+    voteType: "upvote" | "downvote" | "none";
 }
 
 // Error type for error messages
@@ -84,24 +84,24 @@ export interface  Error {
 
 // UnauthorizedError response type
 export interface  UnauthorizedError {
-    description: 'API key is missing or invalid';
+    description: "API key is missing or invalid";
     content: {
-        'application/json': Error;
+        "application/json": Error;
     };
 }
 
 // NotFoundError response type
 export interface  NotFoundError {
-    description: 'The specified resource was not found';
+    description: "The specified resource was not found";
     content: {
-        'application/json': Error;
+        "application/json": Error;
     };
 }
 
 // BadRequestError response type
 export interface  BadRequestError {
-    description: 'Invalid input';
+    description: "Invalid input";
     content: {
-        'application/json': Error;
+        "application/json": Error;
     };
 }

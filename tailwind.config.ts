@@ -4,10 +4,10 @@ import { fontFamily } from "tailwindcss/defaultTheme";
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
 	],
   prefix: "",
   theme: {
@@ -20,8 +20,8 @@ const config = {
     },
     extend: {
       fontFamily: {
-        heading: ['var(--font-heading)', ...fontFamily.sans],
-        body: ['var(--font-body)', ...fontFamily.sans]
+        heading: ["var(--font-heading)", ...fontFamily.sans],
+        body: ["var(--font-body)", ...fontFamily.sans]
       },
       colors: {
         border: "hsl(var(--border))",

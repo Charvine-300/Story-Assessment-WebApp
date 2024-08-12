@@ -3,17 +3,18 @@ import { Inter, Inter_Tight } from "next/font/google";
 import {cn} from "@/lib/utils"
 import "./globals.css";
 import Header from "@/components/header";
+import StoreProvider from "./StoreProvider";
 
 const fontHeading = Inter_Tight({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-heading',
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-heading",
 })
 
 const fontBody = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-body',
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-body",
 })
 
 export const metadata: Metadata = {
@@ -27,10 +28,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <StoreProvider>
     <html lang="en">
     <body
         className={cn(
-            'antialiased',
+            "antialiased",
             fontHeading.variable,
             fontBody.variable
         )}
@@ -41,5 +43,6 @@ export default function RootLayout({
     </div>
     </body>
     </html>
+    </StoreProvider>
 );
 }
