@@ -94,6 +94,7 @@ npm run dev
 ## Deployment
 
 Deployed on Vercel - a seamless deployment and hosting platform that ensures continuous deployment, automatically updating the live site with every code change.
+View site live at [here](https://story-assessment-web-app.vercel.app/ 'here')
 
 ## Contributors
 
