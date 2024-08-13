@@ -44,7 +44,7 @@ The exist in the `.env.local` file in root directory
 - Clone the project:
 
 ```bash
-git clone https://github.com/Charvine-300/Story-Assessment-WebApp.git
+git clone https://github.com/Charvine-300/story-assessment-webapp.git
 ```
 
 - Navigate to the project root path:
@@ -94,7 +94,7 @@ npm run dev
 ## Deployment
 
 Deployed on Vercel - a seamless deployment and hosting platform that ensures continuous deployment, automatically updating the live site with every code change.
-View site live at [here](https://story-assessment-web-app.vercel.app/ 'here')
+You can view the web app live [here](https://story-assessment-web-app.vercel.app/ 'here')
 
 ## Contributors
 
