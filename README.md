@@ -41,7 +41,17 @@ The exist in the `.env.local` file in root directory
 
 ## Setup
 
-- Unzip project folder
+- Clone the project:
+
+```bash
+git clone https://github.com/Charvine-300/Story-Assessment-WebApp.git
+```
+
+- Navigate to the project root path:
+
+```bash
+cd story-assessment-webapp
+```
 
 - Install the essential packages after cloning the project and going to its root path.
 
