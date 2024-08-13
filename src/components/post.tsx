@@ -1,6 +1,6 @@
 "use client"
 
-import { capitaliseFirstLetter, getDaysAgo } from "@/lib/utils";
+import { capitaliseFirstLetter, getAuthorInitials, getDaysAgo, isErrorResponse } from "@/lib/utils";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { ArrowUpIcon, ArrowDownIcon } from "lucide-react";
 import Link from "next/link";
@@ -10,22 +10,10 @@ import { PostListItem } from "@/lib/types";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/lib/state/store";
 import { voteOnPost } from "@/lib/state/features/voteSlice";
-import animationData from "../lotties/spinner.json"
-import Lottie from "react-lottie";
 import Spinner from "./ui/spinner";
+import toast from "react-hot-toast";
+import "@/styles/animation.css";
 
-function getAuthorInitials(authorName: string) {
-  return authorName.split(" ").map(name => name[0]).join("");
-}
-
-const defaultOptions = {
-  loop: true,
-  autoplay: true,
-  animationData: animationData,
-  rendererSettings: {
-    preserveAspectRatio: "xMidYMid slice"
-  }
-};
 
 
 const Post = ({ post }: { post: PostListItem }) => {
@@ -41,9 +29,14 @@ const Post = ({ post }: { post: PostListItem }) => {
 
       // Update vote count based on voteType
       setVoteCount(prevCount => voteType === "upvote" ? prevCount + 1 : prevCount - 2);
-    } catch (error) {
+    } catch (error: unknown) {
       setIsLoading(false);
-      console.error('Vote failed:', error);
+
+      if (isErrorResponse(error)) {
+        toast.error(error.message);
+      } else {
+        toast.error("An unknown error occurred");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -51,7 +44,7 @@ const Post = ({ post }: { post: PostListItem }) => {
 
 
   return (
-         <article className="bg-background rounded-lg border p-6 grid gap-4">
+         <article className="bg-background rounded-lg border p-6 grid gap-4 fade-in-up">
                   <div className="flex items-center gap-4">
                       <Avatar className="w-10 h-10">
                           <AvatarImage src={post.authorAvatar} alt={post.author}/>

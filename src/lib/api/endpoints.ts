@@ -10,3 +10,6 @@ export const vote = (postId: number) => base_url + `/posts/${postId}/vote`;
 // COMMENTS
 export const commentsActions = (postId: number) => base_url + `/posts/${postId}/comments`;
 export const deleteComment = (postId: number, commentId: number) => base_url + `/posts/${postId}/comments/${commentId}`;
+
+// USERS
+export const getUserDetails = base_url + "/users/me";

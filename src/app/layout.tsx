@@ -4,6 +4,8 @@ import {cn} from "@/lib/utils"
 import "./globals.css";
 import Header from "@/components/header";
 import StoreProvider from "./StoreProvider";
+import { Toaster } from "react-hot-toast"
+
 
 const fontHeading = Inter_Tight({
   subsets: ["latin"],
@@ -39,6 +41,27 @@ export default function RootLayout({
     >
     <div className="container mx-auto px-4 py-8 grid gap-8">
       <Header/>
+      <Toaster
+      position="top-center"
+      reverseOrder={false}
+      gutter={8}
+      containerClassName=""
+      containerStyle={{}}
+      toastOptions={{
+        className: "",
+        duration: 5000,
+        style: {
+          background: "#363636",
+          color: "#fff",
+        },
+        success: {
+          duration: 3000,
+        },
+        // theme: {
+        //   primary: "green",
+        //   secondary: "black",
+        // },
+      }}  />
       {children}
     </div>
     </body>

@@ -8,11 +8,12 @@ import Loading from "@/components/ui/loading";
 import ErrorPage from "@/components/ui/error";
 import Post from "@/components/post";
 import bookFlipping from "@/lotties/book-loading.json"
+import Pagination from "@/components/pagination";
 
 
 const Home = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { status, error, posts, perPage, page } = useSelector((state: RootState) => state.posts);
+  const { status, error, posts, perPage, page, totalPosts } = useSelector((state: RootState) => state.posts);
 
   useEffect(() => {
     // Fetch posts
@@ -35,6 +36,15 @@ const Home = () => {
           {status === "succeeded" && posts.map((post, index) => (
               <Post key={index} post={post} />
           ))}
+
+      {/* Pagination */}
+      {status === "succeeded" && totalPosts > perPage && (
+        <Pagination
+          currentPage={page}
+          totalPosts={totalPosts}
+          perPage={perPage}
+        />
+      )}
       </main>
   );
 }

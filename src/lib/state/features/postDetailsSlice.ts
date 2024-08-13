@@ -13,12 +13,12 @@ export const fetchPostDetails = createAsyncThunk(
       return response.data;
     });
 
-
     interface PostDetailsState {
       post: Post | null;
       status: "idle" | "loading" | "succeeded" | "failed"
       votingStatus: "idle" | "loading" | "succeeded" | "failed"
       error: string | null
+      voteCount: number
     }
 
 const initialState: PostDetailsState = {
@@ -26,13 +26,18 @@ const initialState: PostDetailsState = {
   status: "idle",
   votingStatus: "idle",
   error: null,
+  voteCount: 0
 };
 
 
 const postDetailsSlice = createSlice({
   name: "postDetails",
   initialState,
-  reducers: {},
+  reducers: {
+    userVotes: (state, action) => {
+      state.voteCount = action.payload
+    },
+  },
   extraReducers: (builder) => {
     builder
       // Cases for fetching post details
@@ -41,9 +46,10 @@ const postDetailsSlice = createSlice({
       })
       .addCase(fetchPostDetails.fulfilled, (state, action: PayloadAction<Post>) => {
         state.status = "succeeded";
-        console.log("post details", action.payload);
-
+        // console.log("post details", action.payload);
+        
         state.post = action.payload;
+        state.voteCount = action.payload.voteCount;
       })
       .addCase(fetchPostDetails.rejected, (state, action) => {
         state.status = "failed";
@@ -52,4 +58,7 @@ const postDetailsSlice = createSlice({
   }
 })
 
+export const {
+  userVotes,
+} = postDetailsSlice.actions;
 export default postDetailsSlice.reducer;

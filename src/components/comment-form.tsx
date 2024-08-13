@@ -31,7 +31,7 @@ const CommentForm: React.FC<CommentFormProps> = ({ onSubmit, isLoading }) => {
 
   return (
     <form onSubmit={handleSubmit(submitHandler)}>
-      <div className="grid gap-4 pr-4">
+      <div className="grid gap-4 pr-4 py-5">
         <div>
           <Textarea
             placeholder="Add a comment..."

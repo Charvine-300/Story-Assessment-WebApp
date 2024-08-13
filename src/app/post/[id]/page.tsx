@@ -6,33 +6,46 @@ import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import {Button} from "@/components/ui/button";
 import CommentCard from "@/components/comment-card";
 import PostContentBlock from "@/components/post-content-block";
-import {capitaliseFirstLetter, getDaysAgo} from "@/lib/utils";
+import {capitaliseFirstLetter, getDaysAgo, isErrorResponse} from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/lib/state/store";
-import { fetchPostDetails } from "@/lib/state/features/postDetailsSlice";
+import { fetchPostDetails, userVotes } from "@/lib/state/features/postDetailsSlice";
 import Loading from "@/components/ui/loading";
 import ErrorPage from "@/components/ui/error";
 import { fetchPostComments } from "@/lib/state/features/commentsSlice";
 import bookFlipping from "@/lotties/book-loading.json"
 import commentBubbles from "@/lotties/comment-loading.json"
 import { fetchData } from "@/lib/api/apiHelper";
-import { commentsActions } from "@/lib/api/endpoints";
+import { commentsActions, deleteComment } from "@/lib/api/endpoints";
 import CommentForm from "@/components/comment-form";
 import Image from "next/image";
 import Spinner from "@/components/ui/spinner";
 import { voteOnPost } from "@/lib/state/features/voteSlice";
+import Modal from "@/components/modal";
+import toast from "react-hot-toast";
+import "@/styles/animation.css";
 
 
 
 const PostPage = ({ params }: { params: { id: string } }) => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const closeModal = () => setIsModalOpen(false);
+
   const dispatch = useDispatch<AppDispatch>();
-  const { status, error, post } = useSelector((state: RootState) => state.postDetails);
+  const { status, error, post, voteCount } = useSelector((state: RootState) => state.postDetails);
   const { comments, status: commentStatus, error: commentError } = useSelector((state: RootState) => state.comments);
 
   const [isLoading, setIsLoading] = useState(false);
   const [isVoteLoading, setIsVoteLoading] = useState(false); 
-  const [voteCount, setVoteCount] = useState(0);
+  const [isDeleteLoading, setIsDeleteLoading] = useState(false);
+  const [commentID, setCommentID] = useState(0);
+
+  const openDeleteModal = (comment: number) => {
+    setCommentID(comment);
+    setIsModalOpen(true);
+  }
 
       // Convert param to number
       const id = Number(params.id);
@@ -46,10 +59,15 @@ const PostPage = ({ params }: { params: { id: string } }) => {
       await fetchData(endpoint, "POST", {
         "content": `${comment}`
       });
-    } catch (error) {
+    } catch (error: unknown) {
       setIsLoading(false);
 
-      console.log(error);
+      if (isErrorResponse(error)) {
+        toast.error(error.message);
+      } else {
+        toast.error("An unknown error occurred");
+      }
+  
     } finally {
       setIsLoading(false);
       resetForm(); // Reset the form after submission
@@ -65,25 +83,50 @@ const PostPage = ({ params }: { params: { id: string } }) => {
       await dispatch(voteOnPost({ postId: id, voteType })).unwrap();
 
       // Update vote count based on voteType
-      setVoteCount(prevCount => (prevCount ?? 0) + (voteType === "upvote" ? 1 : -1));
-    } catch (error) {
+      const newVoteCount = voteCount + (voteType === "upvote" ? 1 : -2);
+      dispatch(userVotes(newVoteCount));
+    } catch (error: unknown) {
       setIsVoteLoading(false);
-      console.error('Vote failed:', error);
+
+      if (isErrorResponse(error)) {
+        toast.error(error.message);
+      } else {
+        toast.error("An unknown error occurred");
+      }
     } finally {
       setIsVoteLoading(false);
     }
   };
 
   // TODO - Add delete handler
-  // const handleDeleteComment = async (id: string) => {
+  const handleDeleteComment = async () => {
+    setIsDeleteLoading(true);
 
-  // };
+    try {
+      const endpoint = deleteComment(id, commentID);
+      await fetchData(endpoint, "DELETE");
+    } catch (error: unknown) {
+      setIsDeleteLoading(false);
+      setIsModalOpen(false);
+
+      if (isErrorResponse(error)) {
+        toast.error(error.message);
+      } else {
+        toast.error("An unknown error occurred");
+      }
+    } finally {
+      setIsDeleteLoading(false);
+      setIsModalOpen(false);
+
+      // Fetching comments after comment deletion
+      dispatch(fetchPostComments({ postId: id }))
+    }
+  };
   
   useEffect(() => {
-    // Fetch post details
-    dispatch(fetchPostDetails({ postId: id })).then(() => {
-      // TODO - Fix vote count discrepancies
-      setVoteCount(post?.voteCount as number);
+      // Fetch post details
+      dispatch(fetchPostDetails({ postId: id })).then(() => {
+    
       // Fetching comments after post details
       dispatch(fetchPostComments({ postId: id }))
     });
@@ -117,7 +160,7 @@ const PostPage = ({ params }: { params: { id: string } }) => {
 
     {/* Success screen */}
     {status === "succeeded" && post && (
-      <>
+      <div className="fade-in-up">
                 <div className="flex items-center gap-4">
                     <Avatar className="size-10">
                         <AvatarImage src={post.authorAvatar} alt={post.author} />
@@ -136,12 +179,12 @@ const PostPage = ({ params }: { params: { id: string } }) => {
                     ))}
                 </article>
                 <div className="space-y-4">
-                    <div className="flex items-center gap-1 text-muted-foreground">
-                        <Button variant="ghost" size="icon" className={`hover:text-green-600 ${post.userVote == 'upvote' && 'text-green-500'}`} onClick={() => handleVote("upvote")}>
+                    <div className="flex items-center gap-1 text-muted-foreground my-3">
+                        <Button variant="ghost" size="icon" className={`hover:text-green-600 ${post.userVote == "upvote" && "text-green-500"}`} onClick={() => handleVote("upvote")}>
                             <ArrowUpIcon className="w-5 h-5" />
                         </Button>
                         <span>{voteCount}</span>
-                        <Button variant="ghost" size="icon" className={`hover:text-red-600 ${post.userVote == 'downvote' && 'text-red-500'}`} onClick={() => handleVote("downvote")}>
+                        <Button variant="ghost" size="icon" className={`hover:text-red-600 ${post.userVote == "downvote" && "text-red-500"}`} onClick={() => handleVote("downvote")}>
                             <ArrowDownIcon className="w-5 h-5" />
                         </Button>
 
@@ -166,17 +209,41 @@ const PostPage = ({ params }: { params: { id: string } }) => {
 
  {/* Success screen */}
  {commentStatus === "succeeded" && (
-                <div className="grid gap-4">
+                <div className="grid gap-4 fade-in-up">
                     {comments.map((comment) => (
-                        <CommentCard key={comment.id} comment={comment} />
+                        <CommentCard key={comment.id} comment={comment} openModal={openDeleteModal} />
                     ))}
                 </div>
 
  )}    
-      </>
+      </div>
     )}
+
+    {/* Delete confirmation folder */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title="Delete Comment"
+        description="Are you sure you want to delete this comment?"
+        actionButtons={
+          <>
+            <button
+              onClick={closeModal}
+              className="bg-gray-300 px-4 py-2 rounded"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleDeleteComment}
+              className="bg-red-500 text-white px-4 py-2 rounded"
+            >
+                 {isDeleteLoading ? <Spinner size={5} color="white" /> : "Delete comment"} 
+            </button>
+          </>
+        }
+      />
             </main>
-    );
+    );    
 };
 
 export default PostPage;

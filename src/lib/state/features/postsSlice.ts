@@ -22,7 +22,6 @@ interface PostsState {
   posts: PostListItem[];
   status: "idle" | "loading" | "succeeded" | "failed"
   error: string | null
-  total: number
   page: number
   totalPosts: number
   perPage: number
@@ -32,7 +31,6 @@ const initialState: PostsState = {
   posts: [],
   status: "idle",
   error: null,
-  total: 0,
   page: 1,
   totalPosts: 0,
   perPage: 10
@@ -41,7 +39,14 @@ const initialState: PostsState = {
 const postsSlice = createSlice({
   name: "posts",
   initialState,
-  reducers: {},
+  reducers: {
+    perPageCalc: (state, action) => {
+      state.perPage = action.payload;
+    },
+    pageCalc: (state, action) => {
+      state.page = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
     // Cases for fetching posts
@@ -63,4 +68,8 @@ const postsSlice = createSlice({
   },
 });
 
+export const {
+  perPageCalc,
+  pageCalc
+} = postsSlice.actions
 export default postsSlice.reducer;

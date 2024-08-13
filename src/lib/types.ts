@@ -105,3 +105,8 @@ export interface  BadRequestError {
         "application/json": Error;
     };
 }
+
+// Error response from API
+export interface ErrorResponse {
+    message: string;
+}

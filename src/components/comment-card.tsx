@@ -7,8 +7,9 @@ import {capitaliseFirstLetter, getDaysAgo} from "@/lib/utils";
 /**
  * Displays a comment with author details and content.
  */
-export default function CommentCard({ comment }: {
+export default function CommentCard({ comment, openModal }: {
     comment: Comment;
+    openModal: (id: number) => void;
 }) {
     return (
         <div className="flex items-center justify-between border border-border rounded-md p-4">
@@ -25,7 +26,7 @@ export default function CommentCard({ comment }: {
                 </div>
                 <p className="text-muted-foreground text-sm mt-4">{comment.content}</p>
             </div>
-            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-red-600">
+            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-red-600" onClick={() => openModal(comment.id)}>
                 <XIcon className="size-5" />
             </Button>
         </div>
